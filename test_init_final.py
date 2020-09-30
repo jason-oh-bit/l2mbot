@@ -157,7 +157,7 @@ def init():
 	file_data4 = file_data4.decode('utf-8')
 	command_inputData = file_data4.split('\n')
 	
-	boss_inidata = repo.get_contents("boss.ini")
+	boss_inidata = repo.get_contents("boss_n.ini")
 	file_data3 = base64.b64decode(boss_inidata.content)
 	file_data3 = file_data3.decode('utf-8')
 	boss_inputData = file_data3.split('\n')
