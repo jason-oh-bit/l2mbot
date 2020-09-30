@@ -2064,7 +2064,9 @@ class mainCog(commands.Cog):
 			tmp_boss_information = []
 			tmp_cnt = 0
 			tmp_boss_information.append('')
-			if bossData[i][0] == "메두사" : rank = "A"
+			
+			for i in range(bossNum):
+				if bossData[i][0] == "메두사" : rank = "A"
 						elif bossData[i][0] == "블랙릴리" : rank = "A"
 						elif bossData[i][0] == "사반" : rank = "A"
 						elif bossData[i][0] == "발보" : rank = "A"
@@ -2088,7 +2090,6 @@ class mainCog(commands.Cog):
 						elif bossData[i][0] == '코룬' : rank = "D"
 						elif bossData[i][0] == '히실로메' : rank = "D"
 						else: rank = ""
-			for i in range(bossNum):
 				if bossTimeString[i] == '99:99:99' and bossMungFlag[i] != True :
 					if len(tmp_boss_information[tmp_cnt]) > 1000 :
 						tmp_boss_information.append('')
