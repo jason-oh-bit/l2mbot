@@ -966,17 +966,17 @@ class taskCog(commands.Cog):
 						bossTimeString[i] = '99:99:99'
 						bossDateString[i] = '9999-99-99'
 						bossTime[i] = now+datetime.timedelta(days=365)
-						if bossData[i][0] == '메두사' : rank = "A"
-						elif bossData[i][0] == '블랙릴리' : rank = "A"
-						elif bossData[i][0] == '사반' : rank = "A"
-						elif bossData[i][0] == '발보' : rank = "A"
-						elif bossData[i][0] == '가레스' : rank = "A"
-						elif bossData[i][0] == '돌연변이크루마' : rank = "A"
-						elif bossData[i][0] == '베히모스' : rank = "B"
-						elif bossData[i][0] == '사무엘' : rank = "B"
-						elif bossData[i][0] == '오염된크루마' : rank = "B"
-						elif bossData[i][0] == '셀루' : rank = "B"
-						elif bossData[i][0] == '체르투바' : rank = "B"
+						if bossData[i][0] == "메두사" : rank = "A"
+						elif bossData[i][0] == "블랙릴리" : rank = "A"
+						elif bossData[i][0] == "사반" : rank = "A"
+						elif bossData[i][0] == "발보" : rank = "A"
+						elif bossData[i][0] == "가레스" : rank = "A"
+						elif bossData[i][0] == "돌연변이크루마" : rank = "A"
+						elif bossData[i][0] == "베히모스" : rank = "B"
+						elif bossData[i][0] == "사무엘" : rank = "B"
+						elif bossData[i][0] == "오염된크루마" : rank = "B"
+						elif bossData[i][0] == "셀루" : rank = "B"
+						elif bossData[i][0] == "체르투바" : rank = "B"
 						elif bossData[i][0] == '템페스트' : rank = "B"
 						elif bossData[i][0] == '스탄' : rank = "C"
 						elif bossData[i][0] == '코어' : rank = "C"
@@ -2064,7 +2064,30 @@ class mainCog(commands.Cog):
 			tmp_boss_information = []
 			tmp_cnt = 0
 			tmp_boss_information.append('')
-
+			if bossData[i][0] == "메두사" : rank = "A"
+						elif bossData[i][0] == "블랙릴리" : rank = "A"
+						elif bossData[i][0] == "사반" : rank = "A"
+						elif bossData[i][0] == "발보" : rank = "A"
+						elif bossData[i][0] == "가레스" : rank = "A"
+						elif bossData[i][0] == "돌연변이크루마" : rank = "A"
+						elif bossData[i][0] == "베히모스" : rank = "B"
+						elif bossData[i][0] == "사무엘" : rank = "B"
+						elif bossData[i][0] == "오염된크루마" : rank = "B"
+						elif bossData[i][0] == "셀루" : rank = "B"
+						elif bossData[i][0] == "체르투바" : rank = "B"
+						elif bossData[i][0] == '템페스트' : rank = "B"
+						elif bossData[i][0] == '스탄' : rank = "C"
+						elif bossData[i][0] == '코어' : rank = "C"
+						elif bossData[i][0] == '카탄' : rank = "C"
+						elif bossData[i][0] == '여왕개미' : rank = "C"
+						elif bossData[i][0] == '탈라킨' : rank = "C"
+						elif bossData[i][0] == '티미니엘' : rank = "D"
+						elif bossData[i][0] == '티미트리스' : rank = "D"
+						elif bossData[i][0] == '판드라이드' : rank = "D"
+						elif bossData[i][0] == '레피로' : rank = "D"
+						elif bossData[i][0] == '코룬' : rank = "D"
+						elif bossData[i][0] == '히실로메' : rank = "D"
+						else: rank = ""
 			for i in range(bossNum):
 				if bossTimeString[i] == '99:99:99' and bossMungFlag[i] != True :
 					if len(tmp_boss_information[tmp_cnt]) > 1000 :
@@ -2073,6 +2096,7 @@ class mainCog(commands.Cog):
 					tmp_boss_information[tmp_cnt] = tmp_boss_information[tmp_cnt] + bossData[i][0] + ','
 				else :
 					aa.append(bossData[i][0])		                     #output_bossData[0] : 보스명
+					aa.append(rank)
 					if bossMungFlag[i] == True :
 						aa.append(tmp_bossTime[i])                       #output_bossData[1] : 시간
 						aa.append(tmp_bossTime[i].strftime('%H:%M:%S'))  #output_bossData[2] : 시간(00:00:00) -> 초빼기 : aa.append(tmp_bossTime[i].strftime('%H:%M'))  
