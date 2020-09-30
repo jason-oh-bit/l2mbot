@@ -157,7 +157,7 @@ def init():
 	file_data4 = file_data4.decode('utf-8')
 	command_inputData = file_data4.split('\n')
 	
-	boss_inidata = repo.get_contents("boss.ini")
+	boss_inidata = repo.get_contents("boss_n.ini")
 	file_data3 = base64.b64decode(boss_inidata.content)
 	file_data3 = file_data3.decode('utf-8')
 	boss_inputData = file_data3.split('\n')
@@ -320,12 +320,12 @@ def init():
 		if endTime < tmp_now :			
 			endTime = endTime + datetime.timedelta(days=int(basicSetting[13]))
 	
-	bossNum = int(len(boss_inputData)/7)
+	bossNum = int(len(boss_inputData)/5)
 
 	fixed_bossNum = int(len(fixed_inputData)/6) 
 	
 	for i in range(bossNum):
-		tmp_bossData.append(boss_inputData[i*7:i*7+7])
+		tmp_bossData.append(boss_inputData[i*5:i*5+5])
 
 	for i in range(fixed_bossNum):
 		tmp_fixed_bossData.append(fixed_inputData[i*6:i*6+6]) 
