@@ -37,7 +37,7 @@ chkvoicechannel = 0
 chkrelogin = 0
 chflg = 0
 LoadChk = 0
-
+rank = ""
 bossTime = []
 tmp_bossTime = []
 
@@ -903,7 +903,7 @@ class taskCog(commands.Cog):
 					################ before_alert ################ 
 					if fixed_bossTime[i] <= priv and fixed_bossTime[i] > now:
 						if basicSetting[1] != '0' :
-							if fixed_bossFlag[i] == False:
+							if fixed_bossFlag[i] == False: 
 								fixed_bossFlag[i] = True
 								await self.bot.get_channel(channel).send("```" + fixed_bossData[i][0] + ' ' + basicSetting[1] + '분 전 ' + fixed_bossData[i][3] +' [' +  fixed_bossTime[i].strftime('%H:%M:%S') + ']```', tts=False)
 								try:
@@ -966,9 +966,33 @@ class taskCog(commands.Cog):
 						bossTimeString[i] = '99:99:99'
 						bossDateString[i] = '9999-99-99'
 						bossTime[i] = now+datetime.timedelta(days=365)
+						if bossData[i][0] == '메두사' : rank = "A"
+						else if bossData[i][0] == '블랙릴리' : rank = "A"
+						else if bossData[i][0] == '사반' : rank = "A"
+						else if bossData[i][0] == '발보' : rank = "A"
+						else if bossData[i][0] == '가레스' : rank = "A"
+						else if bossData[i][0] == '돌연변이크루마' : rank = "A"
+						else if bossData[i][0] == '베히모스' : rank = "B"
+						else if bossData[i][0] == '사무엘' : rank = "B"
+						else if bossData[i][0] == '오염된크루마' : rank = "B"
+						else if bossData[i][0] == '셀루' : rank = "B"
+						else if bossData[i][0] == '체르투바' : rank = "B"
+						else if bossData[i][0] == '템페스트' : rank = "B"
+						else if bossData[i][0] == '스탄' : rank = "C"
+						else if bossData[i][0] == '코어' : rank = "C"
+						else if bossData[i][0] == '카탄' : rank = "C"
+						else if bossData[i][0] == '여왕개미' : rank = "C"
+						else if bossData[i][0] == '탈라킨' : rank = "C"
+						else if bossData[i][0] == '티미니엘' : rank = "D"
+						else if bossData[i][0] == '티미트리스' : rank = "D"
+						else if bossData[i][0] == '판드라이드' : rank = "D"
+						else if bossData[i][0] == '레피로' : rank = "D"
+						else if bossData[i][0] == '코룬' : rank = "D"
+						else if bossData[i][0] == '히실로메' : rank = "D"
+						else : rank = ""
 						if bossData[i][6] != '' :
 							embed = discord.Embed(
-									description= "```" + bossData[i][0] + bossData[i][4] + '\n<' + bossData[i][6] + '>```' ,
+									description= "```" + bossData[i][0]+ rank + bossData[i][4] + '\n<' + bossData[i][6] + '>```' ,
 									color=0x00ff00
 									)
 						else :
