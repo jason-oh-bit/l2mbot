@@ -37,7 +37,7 @@ chkvoicechannel = 0
 chkrelogin = 0
 chflg = 0
 LoadChk = 0
-rank = ""
+
 bossTime = []
 tmp_bossTime = []
 
@@ -157,7 +157,7 @@ def init():
 	file_data4 = file_data4.decode('utf-8')
 	command_inputData = file_data4.split('\n')
 	
-	boss_inidata = repo.get_contents("boss_n.ini")
+	boss_inidata = repo.get_contents("boss.ini")
 	file_data3 = base64.b64decode(boss_inidata.content)
 	file_data3 = file_data3.decode('utf-8')
 	boss_inputData = file_data3.split('\n')
@@ -347,7 +347,6 @@ def init():
 		f.append(tmp_bossData[j][3][20:])         #bossData[3] : 분전 알림멘트
 		f.append(tmp_bossData[j][4][13:])         #bossData[4] : 젠 알림멘트
 		f.append(tmp_bossData[j][1][tmp_len+1:])  #bossData[5] : 분
-		#f.append(tmp_bossData[j][5]		  #bossData[7] : rank
 		f.append('')                              #bossData[6] : 메세지
 		bossData.append(f)
 		f = []
@@ -904,7 +903,7 @@ class taskCog(commands.Cog):
 					################ before_alert ################ 
 					if fixed_bossTime[i] <= priv and fixed_bossTime[i] > now:
 						if basicSetting[1] != '0' :
-							if fixed_bossFlag[i] == False: 
+							if fixed_bossFlag[i] == False:
 								fixed_bossFlag[i] = True
 								await self.bot.get_channel(channel).send("```" + fixed_bossData[i][0] + ' ' + basicSetting[1] + '분 전 ' + fixed_bossData[i][3] +' [' +  fixed_bossTime[i].strftime('%H:%M:%S') + ']```', tts=False)
 								try:
@@ -967,33 +966,9 @@ class taskCog(commands.Cog):
 						bossTimeString[i] = '99:99:99'
 						bossDateString[i] = '9999-99-99'
 						bossTime[i] = now+datetime.timedelta(days=365)
-						if bossData[i][0] == "메두사" : rank = "A"
-						elif bossData[i][0] == "블랙릴리" : rank = "A"
-						elif bossData[i][0] == "사반" : rank = "A"
-						elif bossData[i][0] == "발보" : rank = "A"
-						elif bossData[i][0] == "가레스" : rank = "A"
-						elif bossData[i][0] == "돌연변이크루마" : rank = "A"
-						elif bossData[i][0] == "베히모스" : rank = "B"
-						elif bossData[i][0] == "사무엘" : rank = "B"
-						elif bossData[i][0] == "오염된크루마" : rank = "B"
-						elif bossData[i][0] == "셀루" : rank = "B"
-						elif bossData[i][0] == "체르투바" : rank = "B"
-						elif bossData[i][0] == '템페스트' : rank = "B"
-						elif bossData[i][0] == '스탄' : rank = "C"
-						elif bossData[i][0] == '코어' : rank = "C"
-						elif bossData[i][0] == '카탄' : rank = "C"
-						elif bossData[i][0] == '여왕개미' : rank = "C"
-						elif bossData[i][0] == '탈라킨' : rank = "C"
-						elif bossData[i][0] == '티미니엘' : rank = "D"
-						elif bossData[i][0] == '티미트리스' : rank = "D"
-						elif bossData[i][0] == '판드라이드' : rank = "D"
-						elif bossData[i][0] == '레피로' : rank = "D"
-						elif bossData[i][0] == '코룬' : rank = "D"
-						elif bossData[i][0] == '히실로메' : rank = "D"
-						else: rank = ""
 						if bossData[i][6] != '' :
 							embed = discord.Embed(
-									description= "```" + bossData[i][0]+ rank + bossData[i][4] + '\n<' + bossData[i][6] + '>```' ,
+									description= "```" + bossData[i][0] + bossData[i][4] + '\n<' + bossData[i][6] + '>```' ,
 									color=0x00ff00
 									)
 						else :
@@ -1306,7 +1281,7 @@ class mainCog(commands.Cog):
 					)
 			embed.add_field(
 					name="----- Special Thanks to. -----",
-					value= '```J.S.Oh```'
+					value= '```총무, 옹님, 공부중, 꽃신, 별빛, K.H.Sim, 쿠쿠, 팥빵, Bit```'
 					)
 			await ctx.send(embed=embed, tts=False)
 		else:
@@ -2065,9 +2040,8 @@ class mainCog(commands.Cog):
 			tmp_boss_information = []
 			tmp_cnt = 0
 			tmp_boss_information.append('')
-			
+
 			for i in range(bossNum):
-				
 				if bossTimeString[i] == '99:99:99' and bossMungFlag[i] != True :
 					if len(tmp_boss_information[tmp_cnt]) > 1000 :
 						tmp_boss_information.append('')
@@ -2075,7 +2049,6 @@ class mainCog(commands.Cog):
 					tmp_boss_information[tmp_cnt] = tmp_boss_information[tmp_cnt] + bossData[i][0] + ','
 				else :
 					aa.append(bossData[i][0])		                     #output_bossData[0] : 보스명
-					#if bossData[i][0] == '체르투바' : aa.append('B')
 					if bossMungFlag[i] == True :
 						aa.append(tmp_bossTime[i])                       #output_bossData[1] : 시간
 						aa.append(tmp_bossTime[i].strftime('%H:%M:%S'))  #output_bossData[2] : 시간(00:00:00) -> 초빼기 : aa.append(tmp_bossTime[i].strftime('%H:%M'))  
