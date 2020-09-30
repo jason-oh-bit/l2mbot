@@ -320,12 +320,12 @@ def init():
 		if endTime < tmp_now :			
 			endTime = endTime + datetime.timedelta(days=int(basicSetting[13]))
 	
-	bossNum = int(len(boss_inputData)/5)
+	bossNum = int(len(boss_inputData)/6)
 
 	fixed_bossNum = int(len(fixed_inputData)/6) 
 	
 	for i in range(bossNum):
-		tmp_bossData.append(boss_inputData[i*5:i*5+5])
+		tmp_bossData.append(boss_inputData[i*6:i*6+6])
 
 	for i in range(fixed_bossNum):
 		tmp_fixed_bossData.append(fixed_inputData[i*6:i*6+6]) 
