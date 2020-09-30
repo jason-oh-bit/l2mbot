@@ -2074,7 +2074,7 @@ class mainCog(commands.Cog):
 					tmp_boss_information[tmp_cnt] = tmp_boss_information[tmp_cnt] + bossData[i][0] + ','
 				else :
 					aa.append(bossData[i][0])		                     #output_bossData[0] : 보스명
-					if bossData[i][0] == '체르투바' : aa.append('B')
+					#if bossData[i][0] == '체르투바' : aa.append('B')
 					if bossMungFlag[i] == True :
 						aa.append(tmp_bossTime[i])                       #output_bossData[1] : 시간
 						aa.append(tmp_bossTime[i].strftime('%H:%M:%S'))  #output_bossData[2] : 시간(00:00:00) -> 초빼기 : aa.append(tmp_bossTime[i].strftime('%H:%M'))  
