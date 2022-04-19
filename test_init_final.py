@@ -1842,7 +1842,7 @@ class mainCog(commands.Cog):
 					tmp_bossTime[i] = bossTime[i] = nextTime = now2
 					tmp_bossTimeString[i] = bossTimeString[i] = nextTime.strftime('%H:%M:%S')
 					tmp_bossDateString[i] = bossDateString[i] = nextTime.strftime('%Y-%m-%d')
-				else if i==33 or i==48 or i==47 or i==46 or i==43 or i==25 or i==42 or i==41 or i==45 or i==44 or i==49 :
+				elif i==33 or i==48 or i==47 or i==46 or i==43 or i==25 or i==42 or i==41 or i==45 or i==44 or i==49 :
 					if len(tmp_msg) > 3 :
 						if tmp_msg.find(':') != -1 :
 							chkpos = tmp_msg.find(':')
