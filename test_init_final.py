@@ -1232,6 +1232,7 @@ class mainCog(commands.Cog):
 			command_list += ','.join(command[21]) + ' [할말]\n'     #!상태
 			command_list += ','.join(command[28]) + ' 사다리, 정산, 척살, 경주, 아이템\n'     #!채널설정
 			command_list += ','.join(command[34]) + ' ※ 관리자만 실행 가능\n\n'     #서버나가기
+			command_list += ','.join(command[38]) + '섭오픈 시간 입력 \n'
 			command_list += ','.join(command[22]) + '\n'     #보스탐
 			command_list += ','.join(command[23]) + '\n'     #!보스탐
 			command_list += '[보스명]컷 또는 [보스명]컷 0000, 00:00\n'  
@@ -1774,7 +1775,62 @@ class mainCog(commands.Cog):
 				await ctx.send(embed=embed, tts=False)
 		else:
 			return
+	################ 지연보스 일괄 설정 ################
+	@commands.command(name=command[38][0], aliases=command[38][1:])
+	async def deleBossInput_(self, ctx):
+		if ctx.message.channel.id == basicSetting[7]:
+			msg = ctx.message.content[len(ctx.invoked_width)+1:]
+			tmp_msg = msg
+			if len(tmp_msg) > 3 :
+				if tmp_msg.find(':') != -1 :
+					chkpos = tmp_msg.find(':')
+					hours1 = tmp_msg[chkpos-2:chkpos]
+					minutes1 = tmp_msg[chkpos+1:chkpos+3]
+					now2 = datetime.datetime.now() + datetime.timedelta(hours = int(basicSetting[0]))
+						tmp_now = datetime.datetime.now() + datetime.timedelta(hours = int(basicSetting[0]))
+						tmp_now = tmp_now.replace(hour=int(hours1), minute=int(minutes1))
+					else:
+						chkpos = len(tmp_msg)-2
+						hours1 = tmp_msg[chkpos-2:chkpos]
+						minutes1 = tmp_msg[chkpos:chkpos+2]
+						now2 = datetime.datetime.now() + datetime.timedelta(hours = int(basicSetting[0]))
+						tmp_now = datetime.datetime.now() + datetime.timedelta(hours = int(basicSetting[0]))
+						tmp_now = tmp_now.replace(hour=int(hours1), minute=int(minutes1))
+				else:
+					now2 = datetime.datetime.now() + datetime.timedelta(hours = int(basicSetting[0]))
+					tmp_now = now2
+					
+				bossFlag[i] = False
+				bossFlag0[i] = False
+				bossMungFlag[i] = False
+				bossMungCnt[i] = 1
 
+				if tmp_now > now2 :
+					tmp_now = tmp_now + datetime.timedelta(days=int(-1))
+					
+				if tmp_now < now2 : 
+					deltaTime = datetime.timedelta(hours = int(bossData[i][1]), minutes = int(bossData[i][5]))
+					while now2 > tmp_now :
+						tmp_now = tmp_now + deltaTime
+						bossMungCnt[i] = bossMungCnt[i] + 1
+					now2 = tmp_now
+					bossMungCnt[i] = bossMungCnt[i] - 1
+				else :
+					now2 = now2 + datetime.timedelta(hours = int(bossData[i][1]), minutes = int(bossData[i][5]))
+							
+				tmp_bossTime[i] = bossTime[i] = nextTime = now2
+				tmp_bossTimeString[i] = bossTimeString[i] = nextTime.strftime('%H:%M:%S')
+				tmp_bossDateString[i] = bossDateString[i] = nextTime.strftime('%Y-%m-%d')
+				
+			await dbSave()
+			await dbLoad()
+			await dbSave()
+			
+			await ctx.send('<지연보스 일괄 입력 완료>', tts=False)
+			print ("<지연보스 일괄 입력 완료>")
+		else:
+			return
+		
 	################ 보스타임 일괄 설정 ################
 	@commands.command(name=command[14][0], aliases=command[14][1:])
 	async def allBossInput_(self, ctx):
