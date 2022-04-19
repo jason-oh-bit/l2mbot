@@ -1884,7 +1884,7 @@ class mainCog(commands.Cog):
 					tmp_bossTime[i] = bossTime[i] = nextTime = now2
 					tmp_bossTimeString[i] = bossTimeString[i] = nextTime.strftime('%H:%M:%S')
 					tmp_bossDateString[i] = bossDateString[i] = nextTime.strftime('%Y-%m-%d')
-				else
+				else :
 					if len(tmp_msg) > 3 :
 						if tmp_msg.find(':') != -1 :
 							chkpos = tmp_msg.find(':')
