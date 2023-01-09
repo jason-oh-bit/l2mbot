@@ -3025,8 +3025,8 @@ class mainCog(commands.Cog):
 
 class IlsangDistributionBot(commands.AutoShardedBot):
 	def __init__(self):
-		super().__init__(command_prefix=[""], help_command=None)
-		self.session = aiohttp.ClientSession(loop=self.loop)
+		super().__init__(command_prefix=[""], help_command=None,intents=None)
+		self.session = aiohttp.ClientSession()#loop=self.loop)
 
 	def run(self):
 		super().run(access_token, reconnect=True)
