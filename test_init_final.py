@@ -1,20 +1,43 @@
 # -*- coding: utf-8 -*- 
 
 ################ Server Ver. 21 (2020. 9. 2.) #####################
-
-import sys, os
-import asyncio, discord, aiohttp
-import random, re, datetime, time, logging
-from discord.ext import tasks, commands
-from discord.ext.commands import CommandNotFound, MissingRequiredArgument
-from gtts import gTTS
-from github import Github
+import asyncio
 import base64
-import gspread, boto3
-from oauth2client.service_account import ServiceAccountCredentials #정산
-from io import StringIO
+import datetime
+import logging
+import os
+import random
+import re
+import sys
+import time
 import urllib.request
+from io import StringIO
 from math import ceil, floor
+import json
+
+import aiohttp
+import boto3
+import discord
+import gspread
+from discord.ext import commands, tasks
+from discord.ext.commands import CommandNotFound, MissingRequiredArgument
+from github import Github
+from gtts import gTTS
+from oauth2client.service_account import ServiceAccountCredentials  # 정산
+
+#import sys, os
+#import asyncio, discord, aiohttp
+#import random, re, datetime, time, logging
+#from discord.ext import tasks, commands
+#from discord.ext.commands import CommandNotFound, MissingRequiredArgument
+#from gtts import gTTS
+#from github import Github
+#import base64
+#import gspread, boto3
+#from oauth2client.service_account import ServiceAccountCredentials #정산
+#from io import StringIO
+#import urllib.request
+#from math import ceil, floor
 
 ##################### 로깅 ###########################
 log_stream = StringIO()    
